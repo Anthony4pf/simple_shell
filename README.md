@@ -1,10 +1,10 @@
-#SIMPLE SHELL IN C- AN IMPLEMENTATION OF UNIX COMMAND LINE INTERPRETER
+# SIMPLE SHELL IN C- AN IMPLEMENTATION OF UNIX COMMAND LINE INTERPRETER
 A Shell is a program that takes the command inputs written from the user's stdin and passes them to the machine to execute them through the kernel. 
 
 The Shell is can be a command-line interface or a graphical user interface that enables the user to use the services of the computerthrough system calls to the kernel.
 In this repository, we will be implementing the Unix commandline interpreter.
 
-##Simple Shell 0.1
+## Simple Shell 0.1
 
 The Shell will Display a prompt and wait for the user to type a command. A command line always ends with a new line.
 
