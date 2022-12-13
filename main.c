@@ -26,7 +26,6 @@ int main(int argc, char *argv[], char **envp)
 		
 		if ((num_chars = getline(&lineptr, &num, stdin) == -1))
 		{
-			write(STDOUT_FILENO, "\n", 2);
 			return(-1);
 		}
 		toks = tokenize_string(lineptr, num_chars);
