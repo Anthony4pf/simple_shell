@@ -11,6 +11,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-char **tokenize_string(char *, size_t);
+char **tokenize_string(char *, ssize_t);
 void exec_command(char **, char **);
 #endif

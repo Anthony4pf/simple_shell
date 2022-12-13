@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-*execute_command - execute a command in the shell
+*exec_command - execute a command in the shell
 *@tokens: an array of character pointers containing the tokens
 *@envp: environment variables from the calling function
 *Return: void
@@ -21,7 +21,7 @@ void exec_command(char **tokens, char **envp)
 		}
 		else if (child_pid == 0)
 		{
-			if(execve(tokens[0], tokens, envp) == -1)
+			if (execve(tokens[0], tokens, envp) == -1)
 			{
 				perror("Error");
 			}
