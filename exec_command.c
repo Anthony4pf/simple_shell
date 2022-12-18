@@ -11,9 +11,13 @@ void exec_command(char **tokens, char **envp)
 {
 	pid_t child_pid;
 	int status;
+	char *command = NULL, *actual_command = NULL;
 
 	if (tokens != NULL)
 	{
+		command = tokens[0];
+		actual_command = get_location(command);
+
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -21,7 +25,7 @@ void exec_command(char **tokens, char **envp)
 		}
 		else if (child_pid == 0)
 		{
-			if (execve(tokens[0], tokens, envp) == -1)
+			if (execve(actual_command, tokens, envp) == -1)
 			{
 				perror("Error");
 			}
