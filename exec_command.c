@@ -18,6 +18,13 @@ void exec_command(char **tokens, char **envp)
 		command = tokens[0];
 		actual_command = get_location(command);
 
+		if (strcmp(command, "exit") == 0)
+		{
+			exit(0);
+		}
+		else
+		{
+
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -33,6 +40,7 @@ void exec_command(char **tokens, char **envp)
 		else
 		{
 			wait(&status);
+		}
 		}
 	}
 }

@@ -14,4 +14,6 @@
 char **tokenize_string(char *, ssize_t);
 void exec_command(char **, char **);
 char *get_location(char *command);
+int shell_exit(char *);
+
 #endif

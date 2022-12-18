@@ -2,7 +2,7 @@
 
 /**
  * get_location - a pointer to the location of a file
- * command: the char whose location we are to find
+ * @command: the char whose location we are to find
  * Return: command
  */
 
@@ -31,10 +31,10 @@ char *get_location(char *command)
 			strcat(file_path, command);
 			strcat(file_path, "\0");
 
-			if (stat(file_path, &buf) ==0)
+			if (stat(file_path, &buf) == 0)
 			{
 				free(path_copy);
-				return(file_path);
+				return (file_path);
 			}
 			else
 			{
@@ -42,14 +42,13 @@ char *get_location(char *command)
 				path_token = strtok(NULL, ":");
 			}
 		}
-		
 		free(path_copy);
 
 		if (stat(command, &buf) == 0)
 		{
-			return(command);
+			return (command);
 		}
-		return(NULL);
+		return (NULL);
 	}
-	return(NULL);
+	return (NULL);
 }
