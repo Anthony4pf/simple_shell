@@ -16,16 +16,18 @@ char **envp)
 	ssize_t num_chars = 0;
 	int int_mode;
 	char **toks;
-	int result, i = 0;
+	int result;
+
+	signal(SIGINT, sigint_handler);
 
 	while (1)
 	{
-		signal(SIGINT, SIG_IGN);
 		int_mode = isatty(STDIN_FILENO);
 		if (int_mode == 1)
 		{
 			write(STDOUT_FILENO, "($) ", 4);
 		}
+
 		num_chars = getline(&lineptr, &num, stdin);
 		if (num_chars == -1)
 		{
@@ -36,5 +38,5 @@ char **envp)
 
 		result = exec_command(toks, envp);
 	}
-	return (0);
+	return (result);
 }

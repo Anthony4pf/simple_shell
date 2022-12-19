@@ -6,8 +6,7 @@
 *Return: void
 */
 
-void sigint_handler(int sig)
+void sigint_handler(int sig __attribute__((unused)))
 {
-	printf("\n");
-	fflush(stdout);
+	/* Do nothing*/
 }
