@@ -7,40 +7,45 @@
 *Return: void
 */
 
-void exec_command(char **tokens, char **envp)
+int exec_command(char **tokens, char **envp)
 {
 	pid_t child_pid;
-	int status;
+	int status, result;
 	char *command = NULL, *actual_command = NULL;
 
-	if (tokens != NULL)
+	if (tokens[0] == NULL)
 	{
-		command = tokens[0];
-		actual_command = get_location(command);
-
-		if (strcmp(command, "exit") == 0)
-		{
-			exit(0);
-		}
-		else
-		{
-
+		return (0);
+	}
+	command = tokens[0];
+	actual_command = get_location(command);
+	if (strcmp(command, "exit") == 0)
+		exit(0);
+	else if (strcmp(command, "env") == 0)
+	{
+		env_command();
+		return (0);
+	}
+	else
+	{
 		child_pid = fork();
-		if (child_pid == -1)
+		if (child_pid == 0)
 		{
-			perror("Error");
-		}
-		else if (child_pid == 0)
-		{
-			if (execve(actual_command, tokens, envp) == -1)
+			result = execve(actual_command, tokens, envp);
+			if (result == -1)
 			{
 				perror("Error");
-			}
+			} exit(result);
+		}
+		else if (child_pid > 0)
+		{
+			wait(&status);
+			return (WEXITSTATUS(status));
 		}
 		else
 		{
-			wait(&status);
+			perror("Error");
+			return (-1);
 		}
-		}
-	}
+	} return (0);
 }

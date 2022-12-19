@@ -42,6 +42,8 @@ char **tokenize_string(char *str, ssize_t num)
 		token = strtok(NULL, delim);
 		i++;
 	}
+
 	tokens[i] = NULL;
+
 	return (tokens);
 }

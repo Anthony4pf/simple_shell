@@ -10,10 +10,13 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 char **tokenize_string(char *, ssize_t);
-void exec_command(char **, char **);
+int exec_command(char **, char **);
 char *get_location(char *command);
-int shell_exit(char *);
+void sigint_handler(int);
+extern char **environ;
+void env_command(void);
 
 #endif
