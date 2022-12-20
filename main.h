@@ -13,7 +13,7 @@
 #include <signal.h>
 
 char **tokenize_string(char *, ssize_t);
-int exec_command(char **, char **);
+int exec_command(char **, char **, int);
 char *get_location(char *command);
 void sigint_handler(int);
 extern char **environ;

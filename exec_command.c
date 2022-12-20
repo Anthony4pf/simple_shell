@@ -3,11 +3,12 @@
 /**
 *exec_command - execute a command in the shell
 *@tokens: an array of character pointers containing the tokens
-*@envp: environment variables from the calling function
+*@av: argument vector from the calling function
+*@count: counter for shell prompt
 *Return: void
 */
 
-int exec_command(char **tokens, char **envp)
+int exec_command(char **tokens, char **av, int count)
 {
 	pid_t child_pid;
 	int status, result;
@@ -31,10 +32,11 @@ int exec_command(char **tokens, char **envp)
 		child_pid = fork();
 		if (child_pid == 0)
 		{
-			result = execve(actual_command, tokens, envp);
+			result = execve(actual_command, tokens, environ);
 			if (result == -1)
 			{
-				perror("Error");
+				printf("%s: %d: %s: not found\n", av[0], count, command);
+				exit(127);
 			} exit(result);
 		}
 		else if (child_pid > 0)
