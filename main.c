@@ -14,11 +14,10 @@ int main(int ac __attribute__((unused)), char *av[] __attribute__((unused)))
 	ssize_t num_chars = 0;
 	int interactive, result, count = 0;
 	char **toks;
-	char **argv;
 
 	signal(SIGINT, sigint_handler);
 	interactive = isatty(STDIN_FILENO);
-	if (!interactive)
+	if (!interactive || ac > 1)
 	{
 		num_chars = getline(&lineptr, &num, stdin);
 		toks = tokenize_string(lineptr, num_chars);
