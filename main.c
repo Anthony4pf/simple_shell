@@ -32,7 +32,7 @@ int main(int ac __attribute__((unused)), char *av[] __attribute__((unused)))
 		num_chars = getline(&lineptr, &num, stdin);
 		if (num_chars == -1)
 		{
-			printf("\n");
+			_putchar('\n');
 			return (-1);
 		}
 		toks = tokenize_string(lineptr, num_chars);
