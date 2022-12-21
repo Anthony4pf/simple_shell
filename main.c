@@ -15,7 +15,7 @@ int main(int ac __attribute__((unused)), char *av[] __attribute__((unused)))
 	int int_mode, result, count = 0;
 	char **toks;
 
-	signal(SIGINT, sigint_handler);
+	/*signal(SIGINT, sigint_handler);*/
 
 	while (1)
 	{
@@ -23,7 +23,8 @@ int main(int ac __attribute__((unused)), char *av[] __attribute__((unused)))
 		int_mode = isatty(STDIN_FILENO);
 		if (int_mode == 1)
 		{
-			write(STDOUT_FILENO, "($) ", 4);
+			/*write(STDOUT_FILENO, "($) ", 4);*/
+			printf("($) ");
 		}
 		num_chars = getline(&lineptr, &num, stdin);
 		if (num_chars == -1)
