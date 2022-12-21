@@ -8,5 +8,6 @@
 
 void sigint_handler(int sig __attribute__((unused)))
 {
-
+	write(STDERR_FILENO, "\n", 1);
+	write(STDERR_FILENO, "($) ", 4);
 }

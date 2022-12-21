@@ -35,7 +35,7 @@ int exec_command(char **tokens, char **av, int count)
 			result = execve(actual_command, tokens, environ);
 			if (result == -1)
 			{
-				printf("%s: %d: %s: not found\n", av[0], count, command);
+				fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, command);
 				exit(127);
 			} exit(result);
 		}
@@ -46,8 +46,8 @@ int exec_command(char **tokens, char **av, int count)
 		}
 		else
 		{
-			perror("Error");
-			return (-1);
+			perror("fork failed");
+			exit(EXIT_FAILURE);
 		}
 	} return (0);
 }
