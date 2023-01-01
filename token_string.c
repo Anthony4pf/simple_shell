@@ -20,7 +20,7 @@ char **tokenize_string(char *str, ssize_t num)
 		perror("Error");
 		return (NULL);
 	}
-	strcpy(str_copy, str);
+	_strcpy(str_copy, str);
 	token = strtok(str, delim);
 	while (token != NULL)
 	{
@@ -36,8 +36,8 @@ char **tokenize_string(char *str, ssize_t num)
 	token = strtok(str_copy, delim);
 	while (token != NULL)
 	{
-		tokens[i] = malloc(sizeof(char) * strlen(token));
-		strcpy(tokens[i], token);
+		tokens[i] = malloc(sizeof(char) * _strlen(token));
+		_strcpy(tokens[i], token);
 
 		token = strtok(NULL, delim);
 		i++;

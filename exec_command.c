@@ -8,7 +8,7 @@
 *Return: void
 */
 
-int exec_command(char **tokens, char **av, int count)
+int exec_command(char **tokens, char **av __attribute__((unused)), int count __attribute__((unused)))
 {
 	pid_t child_pid;
 	int status, result;
@@ -20,9 +20,9 @@ int exec_command(char **tokens, char **av, int count)
 	}
 	command = tokens[0];
 	actual_command = get_location(command);
-	if (strcmp(command, "exit") == 0)
+	if (_strcmp(command, "exit") == 0)
 		exit(0);
-	else if (strcmp(command, "env") == 0)
+	else if (_strcmp(command, "env") == 0)
 	{
 		env_command();
 		return (0);
@@ -35,7 +35,8 @@ int exec_command(char **tokens, char **av, int count)
 			result = execve(actual_command, tokens, environ);
 			if (result == -1)
 			{
-				printf("%s: %d: %s: not found\n", av[0], count, command);
+				/*fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, command);*/
+				perror("Error: command not found");
 				exit(127);
 			} exit(result);
 		}
@@ -46,8 +47,8 @@ int exec_command(char **tokens, char **av, int count)
 		}
 		else
 		{
-			perror("Error");
-			return (-1);
+			perror("fork failed");
+			exit(EXIT_FAILURE);
 		}
 	} return (0);
 }

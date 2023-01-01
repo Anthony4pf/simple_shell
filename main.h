@@ -18,5 +18,11 @@ char *get_location(char *command);
 void sigint_handler(int);
 extern char **environ;
 void env_command(void);
-
+char *_strcpy(char *, char *);
+void _puts(char *);
+int _strlen(char *);
+char *_strdup(char *);
+char *_strcat(char *, char *);
+int _strcmp(char *, char *);
+int _putchar(char);
 #endif
